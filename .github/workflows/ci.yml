@@ -28,16 +28,3 @@ jobs:
 
   pnpm-dependencies-scan:
     uses: ./.github/workflows/pnpm-dependencies-scan.yml
-
-  publish-preview-packages:
-    needs: unit-test
-    if: github.event_name == 'pull_request'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Make publish-preview-packages.sh executable
-        run: chmod +x ./scripts/publish-preview-packages.sh
-      - name: Publish preview packages
-        run: ./scripts/publish-preview-packages.sh
-        env:
-          LERNA_SINCE: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
