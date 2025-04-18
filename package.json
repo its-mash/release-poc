@@ -1,0 +1,37 @@
+{
+  "name": "novel-tieng",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "test": "lerna run test",
+    "build": "lerna run build",
+    "build:serial": "pnpm -r --stream build",
+    "clean": "lerna run clean",
+    "lint": "lerna run lint",
+    "test:all": "lerna run test",
+    "coverage": "lerna run coverage",
+    "generate:module": "lerna run generate:module",
+    "pack:client": "lerna exec --scope @novel-tieng/client -- pnpm pack",
+    "pack:core": "lerna exec --scope @novel-tieng/core -- pnpm pack",
+    "pack:xmc": "lerna exec --scope @novel-tieng/xmc -- pnpm pack",
+    "pack:all": "lerna exec -- pnpm pack",
+    "postinstall": "pnpm build:serial"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "SDK Packages",
+  "devDependencies": {
+    "jest-environment-jsdom": "^29.0.0",
+    "lerna": "^8.1.9",
+    "typescript": "^5.0.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "esbuild@<=0.24.2": ">=0.25.0"
+    }
+  }
+}
