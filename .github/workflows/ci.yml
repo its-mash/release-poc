@@ -35,6 +35,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Make publish-preview-packages.sh executable
+        run: chmod +x ./scripts/publish-preview-packages.sh
       - name: Publish preview packages
         run: ./scripts/publish-preview-packages.sh
         env:
