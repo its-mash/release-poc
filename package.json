@@ -6,18 +6,18 @@
     "packages/*"
   ],
   "scripts": {
-    "test": "lerna run test",
-    "build": "lerna run build",
+    "test": "turbo run test",
+    "build": "turbo run build",
     "build:serial": "pnpm -r --stream build",
-    "clean": "lerna run clean",
-    "lint": "lerna run lint",
-    "test:all": "lerna run test",
-    "coverage": "lerna run coverage",
-    "generate:module": "lerna run generate:module",
-    "pack:client": "lerna exec --scope @novel-tieng/client -- pnpm pack",
-    "pack:core": "lerna exec --scope @novel-tieng/core -- pnpm pack",
-    "pack:xmc": "lerna exec --scope @novel-tieng/xmc -- pnpm pack",
-    "pack:all": "lerna exec -- pnpm pack",
+    "clean": "turbo run clean",
+    "lint": "turbo run lint",
+    "test:all": "turbo run test",
+    "coverage": "turbo run coverage",
+    "generate:module": "turbo run generate:module",
+    "pack:client": "pnpm --filter @novel-tieng/client pack",
+    "pack:core": "pnpm --filter @novel-tieng/core pack",
+    "pack:xmc": "pnpm --filter @novel-tieng/xmc pack",
+    "pack:all": "pnpm -r pack",
     "postinstall": "pnpm build:serial",
     "changeset": "changeset"
   },
@@ -28,7 +28,7 @@
   "devDependencies": {
     "@changesets/cli": "2.29.2",
     "jest-environment-jsdom": "^29.0.0",
-    "lerna": "^8.1.9",
+    "turbo": "^2.5.0",
     "typescript": "^5.0.0",
     "vitest": "^3.0.6"
   },
@@ -36,5 +36,6 @@
     "overrides": {
       "esbuild@<=0.24.2": ">=0.25.0"
     }
-  }
+  },
+  "packageManager": "pnpm@10.6.3"
 }

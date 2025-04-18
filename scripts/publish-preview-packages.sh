@@ -1,14 +1,8 @@
 #!/bin/bash
-set -euo pipefail
 
-# Use LERNA_SINCE if set, otherwise default to main
-SINCE_REF=${LERNA_SINCE:-main}
+result=$(pnpx turbo run build --affected --dry-run=json)
 
-# Get the list of changed packages since the reference
-changed=$(pnpx lerna list --since="$SINCE_REF" --json)
-
-# Extract package locations
-packages=$(echo "$changed" | jq -r '.[].location' | grep '/packages/' | sed 's|^|./|')
+packages=$(echo "$result" | jq -r '.tasks[].directory' | grep '^packages/' | sed 's|^|./|')
 
 if [ -n "$packages" ]; then
   pnpx pkg-pr-new publish --pnpm $packages
