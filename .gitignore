@@ -1,4 +1,4 @@
-# Node
+git rm -r --cached .turbo/# Node
 node_modules/
 dist/
 *.tsbuildinfo

@@ -9,4 +9,4 @@
 [36m
 [1msrc/index.ts[22m → [1mdist/index.cjs.js, dist/index.esm.js[22m...[39m
 [1m[33m(!) [plugin typescript] @rollup/plugin-typescript: outputToFilesystem option is defaulting to true.[39m[22m
-[32mcreated [1mdist/index.cjs.js, dist/index.esm.js[22m in [1m1.8s[22m[39m
+[32mcreated [1mdist/index.cjs.js, dist/index.esm.js[22m in [1m1.7s[22m[39m
