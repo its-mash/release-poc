@@ -1,4 +1,4 @@
-import { clientDummy } from "@mash/client";
+import { clientDummy } from "@its-mash/client";
 
 // Dummy code for xmc
 export function xmcDummy(): string {
