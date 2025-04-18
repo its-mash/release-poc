@@ -9,6 +9,8 @@ jobs:
     name: run-unit-tests
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -30,7 +32,6 @@ jobs:
         run: chmod +x ./scripts/publish-preview-packages.sh
 
       - name: Publish preview packages
-        if: github.event_name == 'pull_request'
         run: ./scripts/publish-preview-packages.sh
         env:
           LERNA_SINCE: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
