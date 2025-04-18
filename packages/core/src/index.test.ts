@@ -3,6 +3,6 @@ import { coreDummy } from "./index";
 
 describe("coreDummy", () => {
   it("returns core dummy", () => {
-    expect(coreDummy()).toBe("core dummy +");
+    expect(coreDummy()).toBe("core dummy ++");
   });
 });
