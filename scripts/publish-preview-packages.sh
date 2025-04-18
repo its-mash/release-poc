@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 # Use LERNA_SINCE if set, otherwise default to main
 SINCE_REF=${LERNA_SINCE:-main}
