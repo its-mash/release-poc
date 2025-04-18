@@ -27,7 +27,8 @@
   "devDependencies": {
     "jest-environment-jsdom": "^29.0.0",
     "lerna": "^8.1.9",
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0",
+    "@changesets/cli": "2.29.2"
   },
   "pnpm": {
     "overrides": {
