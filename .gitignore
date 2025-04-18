@@ -1,18 +1,33 @@
-node_modules
-
-# Ignore distribution files in SDK packages
-packages/*/dist/
-
-# Ignore all files in the .idea directory
-.idea/*
-
-# Ignore all files in the .vscode directory
-.vscode/*
-
+# Node
+node_modules/
+dist/
 *.tsbuildinfo
-*.DS_Store
+
+# Build outputs
+*.log
 *.tgz
-*.npmrc
-.rollup.cache
-coverage
-dist
+
+# IDEs
+.vscode/
+.idea/
+.DS_Store
+
+# Test coverage
+coverage/
+
+# Turbo
+.turbo/
+
+# OS
+Thumbs.db
+
+# Misc
+.env
+.env.*
+
+# pnpm
+.pnpm-debug.log
+.pnpm-store/
+
+# Rollup cache
+.rollup.cache/

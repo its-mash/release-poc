@@ -1,6 +1,6 @@
 {
-  "name": "@novel-tieng/core",
-  "version": "0.1.5",
+  "name": "@its-mash/core",
+  "version": "0.1.0",
   "description": "A TypeScript project",
   "type": "module",
   "main": "./dist/index.cjs.js",
@@ -13,7 +13,7 @@
     "build:watch": "node scripts/build.js --watch",
     "clean": "rimraf dist tsconfig.tsbuildinfo",
     "lint": "eslint src --ext .ts",
-    "test": "vitest",
+    "test": "vitest run",
     "coverage": "vitest run --coverage"
   },
   "devDependencies": {
@@ -38,9 +38,6 @@
     "typescript": "^5.7.3",
     "vitest": "^3.0.6"
   },
-  "pnpm": {
-    "packageManager": "pnpm@latest"
-  },
   "engines": {
     "node": ">=18.0.0"
   },
@@ -54,6 +51,6 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ntieng/mkp.source.test.git"
+    "url": "git+https://github.com/its-mash/release-poc.git"
   }
 }
