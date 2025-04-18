@@ -23,12 +23,15 @@ importers:
       typescript:
         specifier: ^5.0.0
         version: 5.8.2
+      vitest:
+        specifier: ^3.0.6
+        version: 3.0.9(@types/node@20.17.27)(jsdom@26.0.0)(terser@5.39.0)(tsx@4.19.3)(yaml@2.7.0)
 
   packages/client:
     dependencies:
-      '@novel-tieng/core':
-        specifier: 0.1.0
-        version: 0.1.0
+      '@mash/core':
+        specifier: workspace:*
+        version: link:../core
     devDependencies:
       '@rollup/plugin-node-resolve':
         specifier: ^16.0.0
@@ -156,9 +159,9 @@ importers:
 
   packages/xmc:
     dependencies:
-      '@novel-tieng/core':
-        specifier: 0.1.0
-        version: 0.1.0
+      '@mash/client':
+        specifier: workspace:*
+        version: link:../client
     devDependencies:
       '@rollup/plugin-node-resolve':
         specifier: ^16.0.0
@@ -584,10 +587,6 @@ packages:
   '@nodelib/fs.walk@1.2.8':
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
-
-  '@novel-tieng/core@0.1.0':
-    resolution: {integrity: sha512-tbeRKsAlaO4CTNcVOtIQ3kx5caKEZVDZqQtyIH4jBupAI5xMKxxImkTZv1/1E3/c0heSaPmOFd+SvmvgmUKpfA==}
-    engines: {node: '>=18.0.0'}
 
   '@npmcli/agent@2.2.2':
     resolution: {integrity: sha512-OrcNPXdpSl9UX7qPVRWbmWMCSXrcDa2M9DvrbOTj7ao1S4PlqVFYv9/yLKMkrJKZ/V5A/kDBC690or307i26Og==}
@@ -4105,8 +4104,6 @@ snapshots:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.19.1
-
-  '@novel-tieng/core@0.1.0': {}
 
   '@npmcli/agent@2.2.2':
     dependencies:

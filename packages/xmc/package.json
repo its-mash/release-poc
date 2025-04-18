@@ -1,5 +1,5 @@
 {
-  "name": "@novel-tieng/xmc",
+  "name": "@mash/xmc",
   "version": "0.1.0",
   "description": "A TypeScript project",
   "type": "module",
@@ -17,7 +17,7 @@
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "@novel-tieng/core": "0.1.0"
+    "@mash/client": "workspace:*"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^16.0.0",
@@ -54,6 +54,6 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ntieng/mkp.source.test.git"
+    "url": "git+https://github.com/its-mash/release-poc.git"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "name": "@novel-tieng/core",
+  "name": "@mash/core",
   "version": "0.1.0",
   "description": "A TypeScript project",
   "type": "module",
@@ -51,6 +51,6 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ntieng/mkp.source.test.git"
+    "url": "git+https://github.com/its-mash/release-poc.git"
   }
 }

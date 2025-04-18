@@ -1,5 +1,5 @@
 {
-  "name": "novel-tieng",
+  "name": "mash",
   "version": "0.1.0",
   "private": true,
   "workspaces": [
@@ -25,10 +25,11 @@
   "license": "ISC",
   "description": "SDK Packages",
   "devDependencies": {
+    "@changesets/cli": "2.29.2",
     "jest-environment-jsdom": "^29.0.0",
     "lerna": "^8.1.9",
     "typescript": "^5.0.0",
-    "@changesets/cli": "2.29.2"
+    "vitest": "^3.0.6"
   },
   "pnpm": {
     "overrides": {

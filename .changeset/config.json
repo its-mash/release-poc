@@ -4,10 +4,10 @@
   "commit": false,
   "fixed": [],
   "linked": [
-    ["@novel-tieng/client", "@novel-tieng/core"],
-    ["@novel-tieng/xmc", "@novel-tieng/client"]
+    ["@mash/client", "@mash/core"],
+    ["@mash/xmc", "@mash/client"]
   ],
-  "access": "restricted",
+  "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
   "ignore": []

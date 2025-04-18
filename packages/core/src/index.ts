@@ -1,1 +1,4 @@
-console.log('Hello from the core!');
+// Dummy code for core
+export function coreDummy(): string {
+  return "core dummy";
+}
