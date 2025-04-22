@@ -1,0 +1,23 @@
+pull_request_rules:
+  # Rule 1: Merge PR to main when approved and CI passes
+  - name: auto-merge to main
+    conditions:
+      - base=main
+      - status-success=ci # ⬅️ Replace 'ci' with your actual GitHub Actions check name
+      - "#approved-reviews-by>=1"
+    actions:
+      merge:
+        method: merge
+      backport:
+        branches:
+          - develop
+
+  # Rule 2: Auto-merge main → develop backport PR created by Mergify
+  - name: auto-merge backport to develop
+    conditions:
+      - base=develop
+      - author=mergify[bot]
+      - status-success=ci # ⬅️ Same here, update if needed
+    actions:
+      merge:
+        method: merge
