@@ -1,0 +1,41 @@
+{
+  "name": "mash",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "test": "turbo run test",
+    "build": "turbo run build",
+    "build:serial": "pnpm -r --stream build",
+    "clean": "turbo run clean",
+    "lint": "turbo run lint",
+    "test:all": "turbo run test",
+    "coverage": "turbo run coverage",
+    "generate:module": "turbo run generate:module",
+    "pack:client": "pnpm --filter @novel-tieng/client pack",
+    "pack:core": "pnpm --filter @novel-tieng/core pack",
+    "pack:xmc": "pnpm --filter @novel-tieng/xmc pack",
+    "pack:all": "pnpm -r pack",
+    "postinstall": "pnpm build:serial",
+    "changeset": "changeset"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "SDK Packages",
+  "devDependencies": {
+    "@changesets/cli": "2.29.2",
+    "jest-environment-jsdom": "^29.0.0",
+    "turbo": "^2.5.0",
+    "typescript": "^5.0.0",
+    "vitest": "^3.0.6"
+  },
+  "pnpm": {
+    "overrides": {
+      "esbuild@<=0.24.2": ">=0.25.0"
+    }
+  },
+  "packageManager": "pnpm@10.6.3"
+}

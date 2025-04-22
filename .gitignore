@@ -1,0 +1,33 @@
+# Node
+node_modules/
+dist/
+*.tsbuildinfo
+
+# Build outputs
+*.log
+*.tgz
+
+# IDEs
+.vscode/
+.idea/
+.DS_Store
+
+# Test coverage
+coverage/
+
+# Turbo
+.turbo/
+
+# OS
+Thumbs.db
+
+# Misc
+.env
+.env.*
+
+# pnpm
+.pnpm-debug.log
+.pnpm-store/
+
+# Rollup cache
+.rollup.cache/
