@@ -9,19 +9,6 @@ on:
   workflow_dispatch:
 
 jobs:
-  # ✅ Enforce PR to main only from develop
-  validate-source-branch:
-    if: github.event_name == 'pull_request' && github.base_ref == 'main'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check if source branch is develop
-        run: |
-          echo "Base branch: ${{ github.base_ref }}"
-          echo "Head branch: ${{ github.head_ref }}"
-          if [ "${{ github.head_ref }}" != "develop" ]; then
-            echo "❌ Only 'develop' can be merged into 'main'."
-            exit 1
-          fi
   unit-test:
     uses: ./.github/workflows/unit-test.yml
     secrets: inherit
