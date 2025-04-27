@@ -42,7 +42,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_CONFIG_PROVENANCE: true
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           DISPATCH_REPO_OWNER: ${{ secrets.DISPATCH_REPO_OWNER }}
           DISPATCH_REPO_NAME: ${{ secrets.DISPATCH_REPO_NAME }}
           APP_ID: ${{ secrets.APP_ID }}
