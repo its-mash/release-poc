@@ -123,7 +123,7 @@ async function getUnpublishedPackages(packages: Array<Package>) {
   const packagesToPublish: Array<PkgInfo> = [];
 
   for (const pkgInfo of results) {
-    const { name, publishedState, localVersion, publishedVersions } = pkgInfo;
+    const { name, localVersion, publishedVersions } = pkgInfo;
     if (!publishedVersions.includes(localVersion)) {
       packagesToPublish.push(pkgInfo);
       info(
