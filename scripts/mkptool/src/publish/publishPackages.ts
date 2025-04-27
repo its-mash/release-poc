@@ -182,6 +182,10 @@ export default async function publishPackages({
 }: {
   packages: Package[];
 }) {
+  if (!process.env.GITHUB_WORKSPACE) {
+    throw new Error("GITHUB_WORKSPACE environment variable is not set.");
+  }
+
   const packagesByName = new Map(packages.map((x) => [x.packageJson.name, x]));
   const publicPackages = packages.filter((pkg) => !pkg.packageJson.private);
   const unpublishedPackagesInfo = await getUnpublishedPackages(publicPackages);
@@ -190,11 +194,16 @@ export default async function publishPackages({
     return [];
   }
 
+  const repoRoot = process.env.GITHUB_WORKSPACE;
+
   const packagesInfo = unpublishedPackagesInfo.map((pkgInfo) => {
     const pkg = packagesByName.get(pkgInfo.name)!;
+    const relativePackageDir = pkg.dir
+      .replace(repoRoot, "")
+      .replace(/^\\|\//, "");
     return {
       ...pkgInfo,
-      packageDir: pkg.dir,
+      packageDir: relativePackageDir,
     };
   });
 
