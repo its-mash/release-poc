@@ -44,6 +44,5 @@ jobs:
           NPM_CONFIG_PROVENANCE: true
           DISPATCH_REPO_OWNER: ${{ secrets.DISPATCH_REPO_OWNER }}
           DISPATCH_REPO_NAME: ${{ secrets.DISPATCH_REPO_NAME }}
-          APP_ID: ${{ secrets.APP_ID }}
-          APP_PRIVATE_KEY: ${{ secrets.APP_PRIVATE_KEY }}
-          APP_INSTALLATION_ID: ${{ secrets.APP_INSTALLATION_ID }}
+          GITHUB_APP_ID: ${{ secrets.GITHUB_APP_ID }}
+          GITHUB_APP_PRIVATE_KEY: ${{ secrets.GITHUB_APP_PRIVATE_KEY }}
