@@ -1,5 +1,11 @@
 # @its-mash/xmc
 
+## 0.1.5
+
+### Patch Changes
+
+- f402bdb: v2
+
 ## 0.1.4
 
 ### Patch Changes
