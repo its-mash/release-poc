@@ -39,6 +39,8 @@ jobs:
         with:
           app-id: ${{ vars.APP_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          owner: ${{ secrets.DISPATCH_REPO_NAME }}
+          repositories: ${{ secrets.DISPATCH_REPO_NAME }}
 
       - name: Create Release Pull Request
         uses: changesets/action@v1.4.10
