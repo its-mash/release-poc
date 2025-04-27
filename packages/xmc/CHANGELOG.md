@@ -1,5 +1,11 @@
 # @its-mash/xmc
 
+## 0.1.8
+
+### Patch Changes
+
+- d627d88: v2
+
 ## 0.1.7
 
 ### Patch Changes
