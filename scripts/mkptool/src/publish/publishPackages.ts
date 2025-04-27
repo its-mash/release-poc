@@ -56,14 +56,17 @@ async function getInstallationToken() {
     throw new Error(`No installation found for owner: ${dispatchRepoOwner}`);
   }
 
-  console.log("Generating installation token");
-  const installationAuth = await auth({
-    type: "installation",
-    installationId: installation.id,
+  console.log(`Installation ID: ${installation.id}`);
+  console.log(
+    "Generating installation token using createInstallationAccessToken"
+  );
+  const { data: tokenData } = await octokit.apps.createInstallationAccessToken({
+    installation_id: installation.id,
   });
 
   console.log("Installation token generated");
-  return installationAuth.token;
+  console.log("Token Permissions:", tokenData.permissions);
+  return tokenData.token;
 }
 
 async function triggerRepositoryDispatch(packagesInfo: PkgInfo[]) {
