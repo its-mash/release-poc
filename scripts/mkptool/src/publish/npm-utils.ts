@@ -18,11 +18,11 @@ function jsonParse(input: string) {
   }
 }
 
-export async function getPackageInfo(packageJson: PackageJSON) {
-  info(`npm info ${packageJson.name}`);
+export async function getPackageInfo(packageName: string) {
+  info(`npm info ${packageName}`);
 
   try {
-    let { stdout } = await execAsync(`pnpm info ${packageJson.name} --json`);
+    let { stdout } = await execAsync(`pnpm info ${packageName} --json`);
 
     // Github package registry returns empty string when calling npm info
     // for a non-existent package instead of a E404
@@ -38,17 +38,17 @@ export async function getPackageInfo(packageJson: PackageJSON) {
   };
 }
 
-export async function infoAllow404(packageJson: PackageJSON) {
-  let pkgInfo = await getPackageInfo(packageJson);
+export async function infoAllow404(packageName: string) {
+  let pkgInfo = await getPackageInfo(packageName);
   if (pkgInfo.error?.code === "E404") {
-    warn(`Received 404 for npm info ${pc.cyan(`"${packageJson.name}"`)}`);
+    warn(`Received 404 for npm info ${pc.cyan(`"${packageName}"`)}`);
     return { published: false, pkgInfo: {} };
   }
   if (pkgInfo.error) {
     error(
       `Received an unknown error code: ${
         pkgInfo.error.code
-      } for npm info ${pc.cyan(`"${packageJson.name}"`)}`
+      } for npm info ${pc.cyan(`"${packageName}"`)}`
     );
     error(pkgInfo.error.summary);
     if (pkgInfo.error.detail) error(pkgInfo.error.detail);
