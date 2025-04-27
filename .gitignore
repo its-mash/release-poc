@@ -31,3 +31,4 @@ Thumbs.db
 
 # Rollup cache
 .rollup.cache/
+.npmrc

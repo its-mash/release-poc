@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "scripts/mkptool"
   ],
   "scripts": {
     "test": "turbo run test",
@@ -19,7 +20,8 @@
     "pack:xmc": "pnpm --filter @novel-tieng/xmc pack",
     "pack:all": "pnpm -r pack",
     "postinstall": "pnpm build:serial",
-    "changeset": "changeset"
+    "changeset": "changeset",
+    "mkptool": "node scripts/mkptool/dist/index.js"
   },
   "keywords": [],
   "author": "",

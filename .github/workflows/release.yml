@@ -34,12 +34,21 @@ jobs:
       - name: Build
         run: pnpm build
 
+      - uses: actions/create-github-app-token@v2
+        id: app-token
+        with:
+          app-id: ${{ vars.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+
       - name: Create Release Pull Request
         uses: changesets/action@v1.4.10
         with:
-          publish: pnpm changeset publish
+          publish: pnpm run mkptool publish
           version: pnpm changeset version
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_CONFIG_PROVENANCE: true
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          DISPATCH_REPO_OWNER: ${{ secrets.DISPATCH_REPO_OWNER }}
+          DISPATCH_REPO_NAME: ${{ secrets.DISPATCH_REPO_NAME }}
+          DiSPATCH_REPO_TOKEN: ${{ steps.app-token.outputs.token }}
