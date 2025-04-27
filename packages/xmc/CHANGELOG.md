@@ -1,5 +1,11 @@
 # @its-mash/xmc
 
+## 0.1.7
+
+### Patch Changes
+
+- fa17aac: v2
+
 ## 0.1.6
 
 ### Patch Changes
