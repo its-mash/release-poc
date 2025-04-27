@@ -1,5 +1,11 @@
 # @its-mash/xmc
 
+## 0.1.6
+
+### Patch Changes
+
+- 65d26c5: v2
+
 ## 0.1.5
 
 ### Patch Changes
