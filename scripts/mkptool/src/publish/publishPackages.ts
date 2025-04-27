@@ -3,6 +3,8 @@ import { info, warn } from "@changesets/logger";
 import * as npmUtils from "./npm-utils";
 import { exec } from "child_process";
 import { promisify } from "util";
+import { Octokit } from "@octokit/rest";
+import { createAppAuth } from "@octokit/auth-app";
 
 const execAsync = promisify(exec);
 
@@ -22,11 +24,56 @@ export type PublishedResult = {
   published: boolean;
 };
 
+async function getInstallationToken() {
+  console.log("Starting getInstallationToken");
+  const appId = process.env.GITHUB_APP_ID;
+  const privateKey = process.env.GITHUB_APP_PRIVATE_KEY;
+  const dispatchRepoOwner = process.env.DISPATCH_REPO_OWNER;
+
+  if (!appId || !privateKey || !dispatchRepoOwner) {
+    console.log("Missing required environment variables");
+    throw new Error(
+      "GITHUB_APP_ID, GITHUB_APP_PRIVATE_KEY, or DISPATCH_REPO_OWNER is not set in the environment variables"
+    );
+  }
+
+  console.log("Creating app authentication");
+  const auth = createAppAuth({
+    appId,
+    privateKey,
+  });
+
+  console.log("Fetching installations");
+  const appAuthentication = await auth({ type: "app" });
+  const octokit = new Octokit({ auth: appAuthentication.token });
+  const { data: installations } = await octokit.apps.listInstallations();
+  const installation = installations.find(
+    (inst) => inst.account?.login === dispatchRepoOwner
+  );
+
+  if (!installation) {
+    console.log(`No installation found for owner: ${dispatchRepoOwner}`);
+    throw new Error(`No installation found for owner: ${dispatchRepoOwner}`);
+  }
+
+  console.log("Generating installation token");
+  const installationAuth = await auth({
+    type: "installation",
+    installationId: installation.id,
+  });
+
+  console.log("Installation token generated");
+  return installationAuth.token;
+}
+
 async function triggerRepositoryDispatch(packagesInfo: PkgInfo[]) {
+  console.log("Starting triggerRepositoryDispatch");
   const branch = (
     await execAsync("git rev-parse --abbrev-ref HEAD")
   ).stdout.trim();
   const commit = (await execAsync("git rev-parse HEAD")).stdout.trim();
+
+  console.log(`Branch: ${branch}, Commit: ${commit}`);
 
   const payload = {
     event_type: "publish_packages",
@@ -43,33 +90,40 @@ async function triggerRepositoryDispatch(packagesInfo: PkgInfo[]) {
 
   const dispatchRepoOwner = process.env.DISPATCH_REPO_OWNER;
   const dispatchRepoName = process.env.DISPATCH_REPO_NAME;
-  const dispatchGithubToken = process.env.DISPATCH_GITHUB_TOKEN;
 
-  if (!dispatchRepoOwner || !dispatchRepoName || !dispatchGithubToken) {
+  if (!dispatchRepoOwner || !dispatchRepoName) {
+    console.log("Missing required repository environment variables");
     throw new Error(
-      "DISPATCH_REPO_OWNER, DISPATCH_REPO_NAME, or DISPATCH_GITHUB_TOKEN is not set in the environment variables"
+      "DISPATCH_REPO_OWNER or DISPATCH_REPO_NAME is not set in the environment variables"
     );
   }
 
-  const response = await fetch(
-    `https://api.github.com/repos/${dispatchRepoOwner}/${dispatchRepoName}/dispatches`,
-    {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${dispatchGithubToken}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    }
+  console.log("Fetching installation token");
+  const installationToken = await getInstallationToken();
+
+  console.log("Creating Octokit instance");
+  const octokit = new Octokit({
+    auth: installationToken,
+  });
+
+  console.log("Triggering repository dispatch event");
+  const response = await octokit.repos.createDispatchEvent({
+    owner: dispatchRepoOwner,
+    repo: dispatchRepoName,
+    event_type: payload.event_type,
+    client_payload: payload.client_payload,
+  });
+
+  if (response.status !== 204) {
+    console.log(`Failed to trigger repository dispatch: ${response.status}`);
+    throw new Error(
+      `Failed to trigger repository dispatch: ${response.status}`
+    );
+  }
+
+  console.log(
+    `Triggered repository dispatch for ${packagesInfo.length} packages`
   );
-
-  if (!response.ok) {
-    throw new Error(
-      `Failed to trigger repository dispatch: ${response.status} ${response.statusText}`
-    );
-  }
-
-  info(`Triggered repository dispatch for ${packagesInfo.length} packages`);
 }
 
 export default async function publishPackages({

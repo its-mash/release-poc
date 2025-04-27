@@ -34,14 +34,6 @@ jobs:
       - name: Build
         run: pnpm build
 
-      - uses: actions/create-github-app-token@v2
-        id: app-token
-        with:
-          app-id: ${{ secrets.APP_ID }}
-          private-key: ${{ secrets.APP_PRIVATE_KEY }}
-          owner: ${{ secrets.DISPATCH_REPO_NAME }}
-          repositories: ${{ secrets.DISPATCH_REPO_NAME }}
-
       - name: Create Release Pull Request
         uses: changesets/action@v1.4.10
         with:
@@ -53,4 +45,6 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           DISPATCH_REPO_OWNER: ${{ secrets.DISPATCH_REPO_OWNER }}
           DISPATCH_REPO_NAME: ${{ secrets.DISPATCH_REPO_NAME }}
-          DiSPATCH_REPO_TOKEN: ${{ steps.app-token.outputs.token }}
+          APP_ID: ${{ secrets.APP_ID }}
+          APP_PRIVATE_KEY: ${{ secrets.APP_PRIVATE_KEY }}
+          APP_INSTALLATION_ID: ${{ secrets.APP_INSTALLATION_ID }}
