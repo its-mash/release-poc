@@ -30,8 +30,8 @@ importers:
   packages/client:
     dependencies:
       '@its-mash/core':
-        specifier: workspace:*
-        version: link:../core
+        specifier: 0.1.1
+        version: 0.1.1
     devDependencies:
       '@rollup/plugin-node-resolve':
         specifier: ^16.0.0
@@ -160,8 +160,8 @@ importers:
   packages/xmc:
     dependencies:
       '@its-mash/client':
-        specifier: workspace:*
-        version: link:../client
+        specifier: 0.1.11
+        version: 0.1.11
     devDependencies:
       '@rollup/plugin-node-resolve':
         specifier: ^16.0.0
@@ -549,6 +549,14 @@ packages:
   '@istanbuljs/schema@0.1.3':
     resolution: {integrity: sha512-ZXRY4jNvVgSVQ8DL3LTcakaAtXwTVUxE81hslsyD2AtoXW/wVob10HkOJ1X/pAlcI7D+2YoZKg5do8G/w6RYgA==}
     engines: {node: '>=8'}
+
+  '@its-mash/client@0.1.11':
+    resolution: {integrity: sha512-zMBA7BcvBR7QEcUXOXD2+VO5mLAX7GaXfYRJR9Sf+ryVMKCiUJHOPsMh/In4AOtKw5TP0beOZ2aPQWp1i0GiRQ==}
+    engines: {node: '>=18.0.0'}
+
+  '@its-mash/core@0.1.1':
+    resolution: {integrity: sha512-LHgOnu64nNQ+hN3XtYkh6b1IiOF52Re0mj1w5ea52DUDXZLq2Rq8xwrneGii2+3gxZGBIHzET5oClF+FWvHJug==}
+    engines: {node: '>=18.0.0'}
 
   '@jest/environment@29.7.0':
     resolution: {integrity: sha512-aQIfHDq33ExsN4jP1NWGXhxgQ/wixs60gDiKO+XVMd8Mn0NWPWgc34ZQDTb2jKaUWQ7MuwoitXAsN2XVXNMpAw==}
@@ -2525,6 +2533,12 @@ snapshots:
       wrap-ansi-cjs: wrap-ansi@7.0.0
 
   '@istanbuljs/schema@0.1.3': {}
+
+  '@its-mash/client@0.1.11':
+    dependencies:
+      '@its-mash/core': 0.1.1
+
+  '@its-mash/core@0.1.1': {}
 
   '@jest/environment@29.7.0':
     dependencies:
