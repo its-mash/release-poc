@@ -1,6 +1,6 @@
 {
   "name": "@its-mash/xmc",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "description": "A TypeScript project",
   "type": "module",
   "main": "./dist/index.cjs.js",
@@ -17,7 +17,7 @@
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "@its-mash/client": "0.1.11"
+    "@its-mash/client": "0.1.12"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^16.0.0",
