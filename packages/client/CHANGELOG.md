@@ -1,5 +1,13 @@
 # @its-mash/client
 
+## 1.0.0
+
+### Patch Changes
+
+- 1b58e53: patch on client
+- Updated dependencies [446cf69]
+  - @its-mash/core@1.0.0
+
 ## 0.1.12
 
 ### Patch Changes

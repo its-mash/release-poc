@@ -1,5 +1,12 @@
 # @its-mash/xmc
 
+## 1.0.0
+
+### Patch Changes
+
+- Updated dependencies [1b58e53]
+  - @its-mash/client@1.0.0
+
 ## 0.1.12
 
 ### Patch Changes
