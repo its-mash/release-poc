@@ -75,3 +75,5 @@ Below are the main monorepo commands defined in the root `package.json`:
 - **Purpose:** Acts as the backbone for secure communication. It abstracts all low-level postMessage handling and
   exposes a uniform, type-safe API.
 - **Key Features:** Secure handshake, request/response pattern, event pub/sub system, and origin validation.
+
+Major chjanges
