@@ -1,5 +1,11 @@
 # @its-mash/core
 
+## 1.0.0
+
+### Major Changes
+
+- 446cf69: Major change
+
 ## 0.1.12
 
 ### Patch Changes
