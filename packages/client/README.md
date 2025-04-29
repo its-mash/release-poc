@@ -24,12 +24,12 @@ or encryption keys. Your client application (running in an iframe) only needs to
 Example initialization code:
 
 ```typescript
-import { createClientSDK } from '@sitecore-mkp/client-sdk';
+import { createClientSDK } from "@sitecore-mkp/client-sdk";
 
 // Create a configuration object.
 // For example:
 const config = {
-  origin: 'https://your-host-app.com',
+  origin: "https://your-host-app.com",
   // ... additional configuration such as timeouts or encryption settings
 };
 
@@ -48,28 +48,28 @@ static JSON schema (for example, `"xmc.publishing.status"`). You can also pass `
 ```typescript
 (async () => {
   // One-off query example: Request host state once.
-  const queryResult = await client.query('host.state', {
-    variables: { id: '123' },
+  const queryResult = await client.query("host.state", {
+    variables: { id: "123" },
   });
 
   console.log(queryResult.data); // Displays the host state data
   console.log(queryResult.isLoading); // false once the request is complete
 
   // Subscription query example: Request data once and subscribe for future updates.
-  const subscribedResult = await client.query('host.state', {
-    variables: { id: '123' },
+  const subscribedResult = await client.query("host.state", {
+    variables: { id: "123" },
     subscribe: true,
     onSuccess: (data) => {
-      console.log('Received updated host state:', data);
+      console.log("Received updated host state:", data);
     },
     onError: (error) => {
-      console.error('Error during subscription:', error);
+      console.error("Error during subscription:", error);
     },
   });
 
   // Manual re-fetching of data (e.g., on user action)
   const updatedResult = await subscribedResult.refetch();
-  console.log('Refetched data:', updatedResult.data);
+  console.log("Refetched data:", updatedResult.data);
 
   // Unsubscribe from updates when they are no longer required.
   subscribedResult.unsubscribe?.();
@@ -85,20 +85,20 @@ user token and perform the HTTP request on behalf of the client application.
 (async () => {
   try {
     const mutationResponse = await client.mutate(
-      'host.state.mutate',
-      { newState: 'active' },
+      "host.state.mutate",
+      { newState: "active" },
       {
         onSuccess: (data) => {
-          console.log('Mutation applied successfully:', data);
+          console.log("Mutation applied successfully:", data);
         },
         onError: (error) => {
-          console.error('Mutation failed:', error);
+          console.error("Mutation failed:", error);
         },
       }
     );
-    console.log('Mutation response:', mutationResponse);
+    console.log("Mutation response:", mutationResponse);
   } catch (error) {
-    console.error('Error during mutation:', error);
+    console.error("Error during mutation:", error);
   }
 })();
 ```
@@ -108,6 +108,7 @@ user token and perform the HTTP request on behalf of the client application.
 This application context provides information about the application, such as its ID, URL, name, type, icon URL, installation ID, and associated resources.
 
 Here is the ApplicationContext data example:
+
 ```typescript
 {
    id: 'my-app-id',
@@ -122,7 +123,7 @@ Here is the ApplicationContext data example:
        tenantId: 'tenant-1',
        tenantName: 'Example Tenant',
        context: {
-         live: '6Tt0eyd321kUNUkc1zt1YK', 
+         live: '6Tt0eyd321kUNUkc1zt1YK',
          preview: '5o9XlKyOHdr7CAWw3pZbN2'
        }
      }
@@ -134,7 +135,7 @@ To request the application context, you can use the query method with the key 'a
 
 ```typescript
 (async () => {
-  const queryResult = await client.query('application.context');
+  const queryResult = await client.query("application.context");
   console.log(queryResult.data); // Displays the application context data
 })();
 ```
@@ -188,3 +189,5 @@ For more details, please refer to the full documentation in the `/docs` folder o
 ## Contributing
 
 If you have any improvements or bug fixes, feel free to open an issue or submit a pull request.
+
+A patch changes
