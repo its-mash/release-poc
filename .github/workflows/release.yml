@@ -34,11 +34,22 @@ jobs:
       - name: Build
         run: pnpm build
 
+      - name: Create Pre Release Pull Request
+        uses: changesets/action@v1.4.10
+        with:
+          title: Pre Version Packages
+          publish: pnpm changeset publish
+          version: pnpm changeset pre enter next && pnpm changeset version
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_CONFIG_PROVENANCE: true
+
       - name: Create Release Pull Request
         uses: changesets/action@v1.4.10
         with:
           publish: pnpm changeset publish
-          version: pnpm changeset pre exit || true && pnpm changeset version
+          version: pnpm changeset pre exit && pnpm changeset version
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
