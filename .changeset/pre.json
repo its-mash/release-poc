@@ -1,0 +1,11 @@
+{
+  "mode": "pre",
+  "tag": "next",
+  "initialVersions": {
+    "@its-mash/client": "1.0.0",
+    "@its-mash/core": "1.0.0",
+    "@its-mash/xmc": "1.0.0",
+    "mkptool": "1.0.0"
+  },
+  "changesets": []
+}
