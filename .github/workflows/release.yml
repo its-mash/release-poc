@@ -48,7 +48,7 @@ jobs:
       - name: Create Release Pull Request
         uses: changesets/action@v1.4.10
         with:
-          publish: pnpm changeset publish
+          publish: pnpm run mkptool publish
           version: pnpm changeset version
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
