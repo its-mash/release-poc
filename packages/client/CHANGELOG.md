@@ -1,5 +1,12 @@
 # @its-mash/client
 
+## 1.0.1
+
+### Patch Changes
+
+- 08b9eb4: p2
+- 5db43f0: c1
+
 ## 1.0.0
 
 ### Patch Changes
