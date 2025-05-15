@@ -5,6 +5,7 @@ import { exec } from "child_process";
 import { promisify } from "util";
 import { Octokit } from "@octokit/rest";
 import { createAppAuth } from "@octokit/auth-app";
+import * as core from "@actions/core";
 
 const execAsync = promisify(exec);
 
@@ -70,63 +71,27 @@ async function getInstallationToken() {
 }
 
 async function triggerRepositoryDispatch(packagesInfo: PkgInfo[]) {
-  console.log("Starting triggerRepositoryDispatch");
+  console.log("Step output: Packages to be published");
   const branch = (
     await execAsync("git rev-parse --abbrev-ref HEAD")
   ).stdout.trim();
   const commit = (await execAsync("git rev-parse HEAD")).stdout.trim();
 
-  console.log(`Branch: ${branch}, Commit: ${commit}`);
-
-  const payload = {
-    event_type: "publish_packages",
-    client_payload: {
-      packages: packagesInfo.map((pkgInfo) => ({
-        packageName: pkgInfo.name,
-        packageDir: pkgInfo.packageDir,
-        localVersion: pkgInfo.localVersion,
-      })),
-      branch,
-      commit,
-    },
+  const output = {
+    branch,
+    commit,
+    packages: packagesInfo.map((pkgInfo) => ({
+      packageName: pkgInfo.name,
+      packageDir: pkgInfo.packageDir,
+      localVersion: pkgInfo.localVersion,
+    })),
   };
 
-  const dispatchRepoOwner = process.env.DISPATCH_REPO_OWNER;
-  const dispatchRepoName = process.env.DISPATCH_REPO_NAME;
+  // Output as JSON for CI consumption
+  console.log(JSON.stringify(output, null, 2));
 
-  if (!dispatchRepoOwner || !dispatchRepoName) {
-    console.log("Missing required repository environment variables");
-    throw new Error(
-      "DISPATCH_REPO_OWNER or DISPATCH_REPO_NAME is not set in the environment variables"
-    );
-  }
-
-  console.log("Fetching installation token");
-  const installationToken = await getInstallationToken();
-
-  console.log("Creating Octokit instance");
-  const octokit = new Octokit({
-    auth: installationToken,
-  });
-
-  console.log("Triggering repository dispatch event");
-  const response = await octokit.repos.createDispatchEvent({
-    owner: dispatchRepoOwner,
-    repo: dispatchRepoName,
-    event_type: payload.event_type,
-    client_payload: payload.client_payload,
-  });
-
-  if (response.status !== 204) {
-    console.log(`Failed to trigger repository dispatch: ${response.status}`);
-    throw new Error(
-      `Failed to trigger repository dispatch: ${response.status}`
-    );
-  }
-
-  console.log(
-    `Triggered repository dispatch for ${packagesInfo.length} packages`
-  );
+  // Set as step output for GitHub Actions using @actions/core
+  core.setOutput("packages_output", JSON.stringify(output));
 }
 
 async function waitForPackagesToBePublished(packagesInfo: PkgInfo[]) {

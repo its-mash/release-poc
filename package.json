@@ -20,6 +20,7 @@
     "pack:xmc": "pnpm --filter @novel-tieng/xmc pack",
     "pack:all": "pnpm -r pack",
     "postinstall": "pnpm build:serial",
+    "empty-changeset": "pnpm changeset --empty",
     "changeset": "changeset",
     "mkptool": "node scripts/mkptool/dist/index.js"
   },
