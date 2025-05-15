@@ -90,8 +90,11 @@ async function triggerRepositoryDispatch(packagesInfo: PkgInfo[]) {
   // Output as JSON for CI consumption
   console.log(JSON.stringify(output, null, 2));
 
-  // Set as step output for GitHub Actions using @actions/core
-  core.setOutput("packages_output", JSON.stringify(output));
+  // Add a summary for better visibility in the Actions UI
+  await core.summary
+    .addHeading("Packages to be published")
+    .addCodeBlock(JSON.stringify(output, null, 2), "json")
+    .write();
 }
 
 async function waitForPackagesToBePublished(packagesInfo: PkgInfo[]) {
