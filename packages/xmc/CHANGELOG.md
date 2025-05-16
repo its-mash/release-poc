@@ -1,5 +1,13 @@
 # @its-mash/xmc
 
+## 1.0.7
+
+### Patch Changes
+
+- eaae00c: change
+- eaae00c: sdfsd
+- eaae00c: sdfs
+
 ## 1.0.6
 
 ### Patch Changes
