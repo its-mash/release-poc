@@ -1,5 +1,16 @@
 # @its-mash/xmc
 
+## 1.0.8
+
+### Patch Changes
+
+- 7db9c60: change
+- 7db9c60: sdfsd
+- 7db9c60: hello
+- 7db9c60: sdfs
+- Updated dependencies [7db9c60]
+  - @its-mash/client@1.0.8
+
 ## 1.0.7
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@its-mash/core",
-  "version": "1.0.4",
+  "version": "1.0.8",
   "description": "A TypeScript project",
   "type": "module",
   "main": "./dist/index.cjs.js",

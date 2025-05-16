@@ -1,5 +1,13 @@
 # @its-mash/client
 
+## 1.0.8
+
+### Patch Changes
+
+- 7db9c60: hello
+- Updated dependencies [7db9c60]
+  - @its-mash/core@1.0.8
+
 ## 1.0.4
 
 ### Patch Changes
