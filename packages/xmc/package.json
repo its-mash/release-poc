@@ -1,6 +1,6 @@
 {
   "name": "@its-mash/xmc",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A TypeScript project",
   "type": "module",
   "main": "./dist/index.cjs.js",
