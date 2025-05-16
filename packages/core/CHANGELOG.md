@@ -1,5 +1,12 @@
 # @its-mash/core
 
+## 1.0.4
+
+### Patch Changes
+
+- df5a5aa: change 4
+- df5a5aa: yes
+
 ## 1.0.3
 
 ### Patch Changes

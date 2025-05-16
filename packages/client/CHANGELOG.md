@@ -1,5 +1,13 @@
 # @its-mash/client
 
+## 1.0.4
+
+### Patch Changes
+
+- Updated dependencies [df5a5aa]
+- Updated dependencies [df5a5aa]
+  - @its-mash/core@1.0.4
+
 ## 1.0.3
 
 ### Patch Changes
