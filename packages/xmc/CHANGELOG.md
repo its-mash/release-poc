@@ -1,5 +1,11 @@
 # @its-mash/xmc
 
+## 1.0.5
+
+### Patch Changes
+
+- f474e06: change
+
 ## 1.0.4
 
 ### Patch Changes
