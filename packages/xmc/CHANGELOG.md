@@ -1,5 +1,11 @@
 # @its-mash/xmc
 
+## 1.0.4
+
+### Patch Changes
+
+- @its-mash/client@1.0.4
+
 ## 1.0.3
 
 ### Patch Changes
